@@ -1,0 +1,20 @@
+trigger: none  # Disables automatic pipeline triggers
+
+stages:  # Top-level key: defines multiple stages in a pipeline
+  - stage: stage1  # Defines a stage named 'stage1'
+    jobs:  # Jobs within the stage
+      - job: job1  # A job named 'job1'
+        pool:  # Specifies the agent pool
+          name: app001  # The agent pool name
+          demands:  # Defines requirements for the agent
+            - Agent.Name -equals app001-agent-name  # Ensures the agent has the correct name
+        steps:  # Steps to be executed within the job
+          - task: PowerShell@2  # Runs a PowerShell script
+            displayName: 'Print Job, Stage, Task, and Step Names'  # Name shown in the pipeline UI
+            inputs:  # Configuration for the task
+              targetType: 'inline'  # Runs inline PowerShell commands
+              script: |  # Multi-line script to run
+                Write-Host "Stage Name: $env:SYSTEM_STAGENAME"
+                Write-Host "Job Name: $env:SYSTEM_JOBNAME"
+                Write-Host "Task Name: Print Job, Stage, Task, and Step Names"
+                Write-Host "Step Name: PowerShell Inline Script"
