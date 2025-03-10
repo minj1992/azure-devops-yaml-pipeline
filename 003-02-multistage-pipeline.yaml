@@ -1,0 +1,41 @@
+name: MyCustomPipelineRun-004
+
+trigger: none
+
+stages:
+  - stage: stage1
+    jobs:
+      - job: job1
+        pool:
+          name: app001
+          demands:
+            - Agent.Name -equals app001-agent-name
+        steps:
+          - task: PowerShell@2
+            displayName: 'Print Job, Stage, Task, and Step Names'
+            inputs:
+              targetType: 'inline'
+              script: |
+                Write-Host "Stage Name: $env:SYSTEM_STAGENAME"
+                Write-Host "Job Name: $env:SYSTEM_JOBNAME"
+                Write-Host "Task Name: Print Job, Stage, Task, and Step Names"
+                Write-Host "Step Name: PowerShell Inline Script"
+
+  - stage: stage2
+    jobs:
+      - job: job2
+        pool:
+          name: app001
+          demands:
+            - Agent.Name -equals app001-agent-name
+        steps:
+          - task: PowerShell@2
+            displayName: 'Print Job, Stage, Task, and Step Names'
+            inputs:
+              targetType: 'inline'
+              script: |
+                Write-Host "Stage Name: $env:SYSTEM_STAGENAME"
+                Write-Host "Job Name: $env:SYSTEM_JOBNAME"
+                Write-Host "Task Name: Print Job, Stage, Task, and Step Names"
+                Write-Host "Step Name: PowerShell Inline Script"
+                    
