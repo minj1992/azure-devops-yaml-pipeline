@@ -18,3 +18,31 @@ stages:  # Top-level key: defines multiple stages in a pipeline
                 Write-Host "Job Name: $env:SYSTEM_JOBNAME"
                 Write-Host "Task Name: Print Job, Stage, Task, and Step Names"
                 Write-Host "Step Name: PowerShell Inline Script"
+
+
+-----------------------------------
+
+
+✅ YAML Pipeline Indentation Workflow:
+Trigger Level:
+trigger: none — defines how the pipeline starts.
+Stages:
+stages: — a top-level key for grouping jobs into stages.
+Stage Definition:
+- stage: stage1 — defines the first stage (stage1).
+Jobs:
+jobs: — contains one or more jobs to run in the stage.
+Job Definition:
+- job: job1 — defines a job (job1).
+Pool:
+pool: — specifies which agent pool and demands to use.
+Steps:
+steps: — a list of tasks or scripts the job will run.
+Task:
+- task: PowerShell@2 — runs a PowerShell task.
+Display Name:
+displayName: — names the task for easy viewing in the pipeline UI.
+Inputs:
+inputs: — settings for the task.
+Script Block:
+script: — multiline PowerShell script using | (pipe) to preserve formatting.
